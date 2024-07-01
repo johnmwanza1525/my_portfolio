@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Jaysoft Technology - Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+
+      .banner2 {
+        background: linear-gradient(to right, #7F7FD5, #86A8E7, #91EAE4);
+        color: white;
+        padding: 100px 0;
+        text-align: center;
+      }
+
+      .banner h1 {
+        font-size: 50px;
+        margin-bottom: 20px;
+      }
+
+      .banner p {
+        font-size: 20px;
+        margin-bottom: 40px;
+      }
+
+      .banner img {
+        width: 150px;
+        height: auto;
+      }
+
+      .core-values {
+        padding: 50px 0;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .core-values .circle-frame {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: #7F7FD5;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        position: relative;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .core-values .circle-frame::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: 170px;
+        height: 170px;
+        border: 2px dotted #fff;
+        border-radius: 50%;
+        animation: rotate 10s linear infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .core-values .circle-frame:hover {
+        transform: scale(1.1);
+      }
+
+      .core-values h3 {
+        text-align: center;
+        margin-top: 20px;
+        color: #fff;
+      }
+
+      .core-values p {
+        text-align: center;
+        margin-top: 10px;
+        color: #fff;
+      }
+
+      .about-us {
+        padding: 50px 0;
+        background-color: #f1f1f1;
+      }
+
+      .about-us h2 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .about-us p {
+        font-size: 18px;
+        line-height: 1.5;
+        text-align: center;
+        max-width: 800px;
+        margin: auto;
+      }
+
+      .buttons {
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      .buttons a {
+        margin: 0 10px;
+        padding: 10px 20px;
+        background-color: #7F7FD5;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+
+      .buttons a:hover {
+        background-color: #6a6ac9;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="container core-values">
+      <h1 class="text-center mb-5 text-info weight-white">Our Core Values</h1>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="circle-frame">
+            <img src="{% static 'slide/value1.g' %}" alt="creativity">
+          </div>
+          <h3>Innovation</h3>
+          <p>We thrive on creativity and ingenuity.</p>
+        </div>
+        <div class="col-md-3">
+          <div class="circle-frame">
+            <img src="{% static 'images/v' %}" alt="Quality Guarantee">
+          </div>
+          <h3>Quality</h3>
+          <p>Delivering the highest standards.</p>
+        </div>
+        <div class="col-md-3">
+          <div class="circle-frame">
+            <img src="{% static 'slide/core_value_3.png' %}" alt="Honesty">
+          </div>
+          <h3>Integrity</h3>
+          <p>Upholding honesty and strong principles.</p>
+        </div>
+        <div class="col-md-3">
+          <div class="circle-frame">
+            <img src="{% static 'images/core_value_4.png' %}" alt="Passion">
+          </div>
+          <h3>Customer Focus</h3>
+          <p>Our clients are at the heart of what we do.</p>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,129 @@
+{% extends 'portfolio/base.html' %}
+{% load custom_tags %}
+{% load static %}
+{% block content %}
+<style>
+  body {
+    background-color: #f0f8ff; /* Light blue background color */
+    padding-top: 70px;
+  }
+  .animated-category {
+    animation: fadeIn 1s ease-in-out;
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  .choose-us {
+    background-color: #e3f2fd;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    text-align: center; /* Center content */
+  }
+  .choose-us img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  .choose-us h4 {
+    margin-top: 10px;
+  }
+  .star-rating {
+    color: #ffd700;
+  }
+  .categories-list .list-group-item:hover,
+  .categories-list .selected {
+    background-color: white;
+    color: blue;
+  }
+  .product-card {
+    padding: 15px;
+    text-align: center;
+  }
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  .product-card h5 {
+    margin-top: 10px;
+  }
+</style>
+
+<div class='row justify-content-center'>
+  <div class='col-lg-3'>
+    <div class='card shadow-custom border-0'>
+      <h4 class='font-weight-bold text-blue animated-category'>Categories</h4>
+      <ul class='list-group border-0 categories-list'>
+        <li class="list-group-item border-0 p-0 {% if not requested_category %}selected{% else %}unselected{% endif %}">
+          <a href="{% url 'main:product_view' %}" class="btn btn-block text-left">All</a>
+        </li>
+        {% for category in categories %}
+        <li class="list-group-item border-0 p-0 {% if category.slug == requested_category.slug %}selected{% else %}unselected{% endif %}">
+          <a href="{{ category.get_absolute_url }}" class="btn btn-block text-left">
+            {{ category.name }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class='col-lg-9'>
+    <div class='card shadow-custom border-0 mb-4'>
+      <div class='card-body text-center'>
+        <h3 class='font-weight-bold text-blue'>Our Software Projects</h3>
+        <div class='bottom_line'></div>
+      </div>
+    </div>
+
+    <div class='choose-us'>
+      <img src="{% static 'path/to/your/image.jpg' %}" alt="Why Choose Us">
+      <h4>Why Clients Choose Us</h4>
+      <p>Our dedication to quality, innovative solutions, and customer satisfaction sets us apart in the industry. We deliver top-notch software projects tailored to meet unique client needs.</p>
+    </div>
+
+    <h2 class="font-weight-bold text-grey">
+      {% if requested_category %}
+        {{ requested_category.name }}
+      {% else %}
+        Our Portfolio
+      {% endif %}
+    </h2>
+
+    <div class='row no-gutters mt-4'>
+      {% if requested_category %}
+        {% for product in requested_category.products.all %}
+        <div class='col-sm-4'>
+          <div class='product-card'>
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class='img-fluid'>
+            <h5>{{ product.name }}</h5>
+            <hr>
+            <span>Starting From Kes {{ product.price }}</span>
+            <div class='star-rating'>
+              <span>({{ product.rating }}/5)</span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        {% for product in products %}
+        <div class='col-sm-4'>
+          <div class='product-card'>
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class='img-fluid'>
+            <h5>{{ product.name }}</h5>
+            <hr>
+            <span>Starting From Kes {{ product.price }}</span>
+            <div class='star-rating'>
+              <span>({{ product.rating }}/5)</span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<hr>
+{%include 'portfolio/footer.html' %}
+{% endblock content %}

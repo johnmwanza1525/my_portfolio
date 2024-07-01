@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+    <title>Company Profile</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+
+
+
+     .jumbotron {
+            background-image: url("{% static 'images/bg.jpg' %}"); /* Initial background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            transition: background-image 1s ease-in-out; /* Smooth transition for background image */
+        }
+
+        .jumbotron-content {
+            position: relative; /* Ensures content stays on top of background */
+            z-index: 1; /* Content is above background */
+        }
+
+      .jumbotron h4, .jumbotron h3 {
+        animation: slideIn 2s ease-out forwards;
+      }
+
+      .alert {
+        margin: 0px;
+      }
+
+      .glow {
+        font-size: 30px;
+        -webkit-animation: glow 1s ease-in-out infinite alternate;
+        -moz-animation: glow 1s ease-in-out infinite alternate;
+        animation: glow 1s ease-in-out infinite alternate;
+      }
+
+      @-webkit-keyframes glow {
+        from {
+          text-shadow: 0 0 10px #eeeeee, 0 0 20px #000000, 0 0 30px #000000, 0 0 40px #000000, 0 0 50px #9554b3, 0 0 60px #9554b3, 0 0 70px #9554b3;
+        }
+        to {
+          text-shadow: 0 0 20px #eeeeee, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6;
+        }
+      }
+
+      @keyframes slideIn {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      .reviews {
+        text-align: center;
+        padding: 50px 0;
+      }
+
+      .reviews-slider {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 10px;
+      }
+
+      .slide {
+        min-width: 300px;
+        background: #f8f9fa;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .slide img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+      }
+
+      .banner {
+        background-color: #0dcaf0;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin: 20px 0;
+        font-size: 24px;
+        font-weight: bold;
+        animation: glowBanner 1s ease-in-out infinite alternate;
+      }
+
+      @keyframes glowBanner {
+        from {
+          text-shadow: 0 0 10px #ffffff, 0 0 20px #ff4da6, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6;
+        }
+        to {
+          text-shadow: 0 0 20px #ffffff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+        }
+      }
+
+      .profile-section {
+        background-color: #ffffff;
+        padding: 60px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-content {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        text-align: left;
+      }
+
+      .profile-content img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-right: 30px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-content h2 {
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+
+      .profile-content p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #555;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      footer a {
+        color: #ff4da6;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .container-fluid {
+        padding: 0 5%;
+      }
+
+      .show-more-btn {
+        margin: 20px auto;
+        display: block;
+        background-color: #ff4da6;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .show-more-btn:hover {
+        background-color: #e43d99;
+      }
+
+ .products-section .row {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  overflow-x: auto; /* Enable horizontal scroll */
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+.products-section .col-md-3 {
+  display: inline-flex; /* Use inline-flex to maintain a single row */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 10px; /* Add margin between products */
+  width: 300px; /* Adjust width for larger product size */
+}
+
+.products-section .col-md-3 img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.products-section .col-md-3 .btn {
+  margin-top: auto;
+}
+
+
+.package-card {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.package-card:hover {
+  transform: scale(1.05);
+}
+
+.package-card .card-header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.package-card.bronze .card-header {
+  background-color: #cd7f32;
+}
+
+.package-card.silver .card-header {
+  background-color: #c0c0c0;
+}
+
+.package-card.gold .card-header {
+  background-color: #ffd700;
+}
+
+.package-card.platinum .card-header {
+  background-color: #e5e4e2;
+}
+
+.package-card h3 {
+  text-align: center;
+  color: #333;
+}
+
+.package-card p {
+  text-align: center;
+  color: #666;
+}
+
+.package-card ul {
+  list-style-type: none;
+  padding: 0;
+  color: #333;
+}
+
+.package-card ul li {
+  padding: 5px 0;
+}
+
+.package-card ul li::before {
+  content: '✔';
+  color: #28a745;
+  margin-right: 10px;
+}
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="jumbotron">
+
+      <div>
+        <h4 class="display-3 glow text-white">JAYSOFT TECHNOLOGY YOUR SOFTWARE SOLUTION</h4>
+        <br>
+        <h2>Get a software quotation</h2>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="https://api.whatsapp.com/send?phone=254706720450&text=Hello%20Jaysoft%20I%20wanted %20To%20Inquire%20About%20your%20Sevices" role="button">Services Inquiry</a>
+        </p>
+        <h2> Call us on 0706720450 or 0788205209</h2>
+      </div>
+    </div>
+
+    <div class="banner">
+      Get a Responsive Website from as low as Kes 10,000/=
+    </div>
+
+   {% include 'portfolio/bing.html' %}
+<div class="products-section">
+  <h1 class='text-center bg-success'>Our Portfolio</h1>
+  <div class="container">
+    <div class="scroll-container">
+      <div class="row">
+        {% for product in products %}
+        <div class="col-md-3">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          <h5>{{ product.name }}</h5>
+          <p>{{ product.price }}</p>
+          <a href="{% url 'main:product_detail' product.id %}" class="btn btn-primary">View Product</a>
+        </div>
+        {% endfor %}
+        {% for product in products %}
+        <div class="col-md-3">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          <h5>{{ product.name }}</h5>
+          <p>{{ product.price }}</p>
+          <a href="{% url 'main:product_detail' product.id %}" class="btn btn-primary">View Product</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+  <style>
+
+    .packages-section {
+    padding: 70px 0;
+    margin:20px;
+  }
+
+  .package-card {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .package-card:hover {
+    transform: scale(1.05);
+  }
+
+  .package-card .card-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .package-card.bronze .card-header {
+    background-color: #cd7f32;
+
+
+  }
+
+  .package-card.silver .card-header {
+    background-color: #c0c0c0;
+  }
+
+  .package-card.gold .card-header {
+    background-color: #ffd700;
+  }
+
+  .package-card.platinum .card-header {
+    background-color: #e5e4e2;
+  }
+
+  .package-card h3 {
+    text-align: center;
+    color: #333;
+  }
+
+  .package-card p {
+    text-align: center;
+    color: #666;
+  }
+
+  .package-card ul {
+    list-style-type: none;
+    padding: 7px;
+    color: #333;
+  }
+
+  .package-card ul li {
+    padding: 5px 0;
+  }
+
+  .package-card ul li::before {
+    content: '✔';
+    color: #28a745;
+    margin-right: 10px;
+  }
+  .section-title {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .logo1{
+  padding-top:40px;
+  }
+
+  </style>
+
+  <body>
+
+
+
+    <!--Packages listing-->
+    <div class="container-fluid packages-section">
+  <h1 class="text-center mb-5 text-success">Our Development Packages</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card package-card ">
+        <div class="card-header bronze text-white bg-dark">Bronze</div>
+        <div class="card-body">
+          <h3>Ksh 10,000</h3>
+          <p>One time Fee</p>
+          <ul>
+            <li>Ready within 2 days</li>
+            <li>1-2 Page Website</li>
+            <li>Mobile friendly Design</li>
+            <li>Cross Browser Compatible</li>
+            <li>Simple Design & Layout</li>
+            <li>Social Media Integration</li>
+            <li>1 month Free support</li>
+            <li>24hrs customer service </li>
+            <li>Anti DDos Protection </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card package-card ">
+        <div class="card-header silver text-white bg-secondary">Silver</div>
+        <div class="card-body">
+          <h3>Ksh 15,000</h3>
+          <p>One time Fee</p>
+          <ul>
+            <li>Ready within 6 days</li>
+            <li>Up to 5 Web pages</li>
+            <li>Mobile friendly Design</li>
+            <li>Cross Browser Compatible</li>
+            <li>Improved Design & Functionality</li>
+            <li>Social Media Integration</li>
+            <li>Live chat & Whatsapp Chat</li>
+            <li>Google Maps Integration</li>
+            <li>Contact Form Integration</li>
+            <li>2 months free support</li>
+            <li>24hrs customer service </li>
+            <li>Anti DDos Protection </li>
+            <li>cloudflare Integration </li>
+            <li>1 Month Free Hosting </li>
+            <li>Agile methodology Integration </li>
+            <li>Free Test-Case </li>
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card package-card">
+        <div class="card-header gold text-white bg-warning">Gold</div>
+        <div class="card-body">
+          <h3>Ksh 25,000</h3>
+          <p>One time Fee</p>
+          <ul>
+            <li>Ready within 12 days</li>
+            <li>Up to 15 Web pages</li>
+            <li>Mobile friendly Design</li>
+            <li>Cross Browser Compatible</li>
+            <li>Improved Design & Functionality</li>
+            <li>Social Media Integration</li>
+            <li>Live chat & Whatsapp Chat</li>
+            <li>Google Maps Integration</li>
+            <li>Contact Form Integration</li>
+            <li>3 months free support</li>
+            <li>Blog Module</li>
+            <li>Google Analytics</li>
+            <li>Basic Website SEO </li>
+            <li>Google my business Setup </li>
+            <li> Ecommerce Functionality </li>
+            <li>M-pesa Integration</li>
+            <li>Visa card Integration</li>
+            <li>Free Domain Name Registration</li>
+            <li>Free one year hosting </li>
+            <li>Agile methodology Integration </li>
+            <li>Free Test-Case </li>
+            <li>24hrs Customer Service </li>
+            <li>Free PenTest From our Experts </li>
+            <li>Regular Security updates year </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card package-card">
+        <div class="card-header platinum text-white bg-danger">Platinum</div>
+        <div class="card-body">
+          <h3>Ksh 40,000</h3>
+          <p>One time Fee</p>
+          <ul>
+            <li>Ready within 20 days</li>
+            <li>Unlimited Web pages</li>
+            <li>Mobile friendly Design</li>
+            <li>Cross Browser Compatible</li>
+            <li>High End Design & Functionality</li>
+            <li>Social Media Accounts Creation & Integration Integration</li>
+            <li>Live chat & Whatsapp Chat</li>
+            <li>Google Maps Integration</li>
+            <li>Contact Form Integration</li>
+            <li>6 months free support</li>
+            <li>Blog Module</li>
+            <li>Google Analytics</li>
+            <li>Basic Website SEO </li>
+            <li>Google my business Setup </li>
+            <li> Ecommerce Functionality </li>
+            <li>M-pesa Integration</li>
+            <li>Visa card Integration</li>
+            <li>Free Domain Name Registration</li>
+            <li>Free one year hosting </li><li>Agile methodology Integration </li>
+            <li>Free Test-Case </li>
+            <li>Free PenTest From our Experts </li>
+            <li>Regular Security updates year </li>
+            <li>Robust API's of Choice Integration </li>
+            <li>24hrs Customer Service </li>
+            <li>Full involvement during the Development Processs upon Request</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+    // List of background images for slideshow
+    var backgroundImages = [
+
+        "{% static 'images/bg2.jpeg' %}",
+        "{% static 'images/bg3.jpg' %}",
+        "{% static 'images/bg4.jpeg' %}",
+        "{% static 'images/bg.jpg' %}",
+        "{% static 'images/bg5.jpeg' %}",
+        "{% static 'images/bg7.jpeg' %}",
+        "{% static 'images/bg8.jpeg' %}",
+
+        // Add more image URLs as needed
+    ];
+
+    var currentIndex = 0;
+    var jumbotron = $('.jumbotron'); // Corrected selector to use class
+
+    // Function to change background image
+    function changeBackground() {
+        jumbotron.css('background-image', 'url(' + backgroundImages[currentIndex] + ')');
+        currentIndex = (currentIndex + 1) % backgroundImages.length;
+    }
+
+    // Change background image every 4 seconds
+    setInterval(changeBackground, 4000); // Adjust timing as needed
+});
+</script>
+{% include 'portfolio/temp2.html'%}
+{%include 'portfolio/slide.html' %}
+    <div class="profile-section">
+      <div class="container-fluid">
+        <div class="profile-content">
+          <img src="{% static 'images/john_mwanza.jpg' %}" alt="John Mwanza">
+          <div>
+            <h2>Remark from the Chief Developer</h2>
+            <p>
+              "At JaySoft Technology, we are committed to delivering top-notch software solutions that exceed our clients' expectations. Our team is passionate about technology and dedicated to providing exceptional service and innovative solutions. We look forward to working with you and helping your business thrive in the digital age."
+            </p>
+            <p>
+              <strong>John Mwanza</strong><br>
+              Chief Developer, JaySoft Technology
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews">
+      <h2>What Our Clients Say</h2>
+      <div id="reviewsCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="slide">
+              <img src="{% static 'images/George.jpg' %}" alt="Reviewer 1">
+              <p>"JaySoft Technology provided exceptional service and delivered our project on time."</p>
+              <h5>CEO TNT Sacco George Malava</h5>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="slide">
+              <img src="{% static 'images/reviewer2.jpg' %}" alt="Reviewer 2">
+              <p>"Highly professional team! Their support and maintenance services are top-notch."</p>
+              <h5>Jane Smith</h5>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="slide">
+              <img src="{% static 'images/faith.jpg' %}" alt="Reviewer 3">
+              <p>"My online Apparel shop is now a reality. Thanks John and your group."</p>
+              <h5>Faith Anyango</h5>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="slide">
+              <img src="{% static 'images/mellisa.jpg' %}" alt="Reviewer 4">
+              <p>"In my opinion, their services are affordable and quality. John is strategic at approaching solutions. 👍👍"</p>
+              <h5>Mellisa Wanjiru</h5>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="slide">
+              <img src="{% static 'images/Dennis.jpg' %}" alt="Reviewer 5">
+              <p>"Created for us our hospital management system. Patients can now book appointments or monitor their treatment progress from their phones. The system is very robust; it keeps our records, manages our admissions, discharges, treatment, and staff. Thanks JAYSOFT."</p>
+              <h6>Kapenguria District Hospital</h6>
+              <h5>Doctor Dennis Kasil</h5>
+            </div>
+          </div>
+          <!-- More reviews will be appended here by JavaScript -->
+        </div>
+        <a class="carousel-control-prev" href="#reviewsCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#reviewsCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 JaySoft Technology. All Rights Reserved.</p>
+        <p><a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms of Service</a></p>
+      </div>
+    </footer>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.products-section .scroll-container');
+    const row = container.querySelector('.row');
+    let scrollAmount = 0;
+    let scrollWidth = row.scrollWidth / 2; // Half the scroll width for duplicated items
+
+    function scrollStep() {
+      scrollAmount += 1;
+      if (scrollAmount >= scrollWidth) {
+        scrollAmount = 0;
+        container.scrollTo({ left: 0 });
+      } else {
+        container.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
+
+    setInterval(scrollStep, 20);
+  });
+</script>
+
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const reviews = [
+          {
+            img: "{% static 'images/omollo.jpg' %}",
+            text: "Great software solutions provided with excellent customer service.",
+            name: "Eng Jeremiah Omollo"
+          },
+          {
+            img: "{% static 'images/natalie.jpg' %}",
+            text: "Our company's productivity has increased significantly thanks to JaySoft.",
+            name: "Natalie Brown"
+          },
+          {
+            img: "{% static 'images/davis.jpg' %}",
+            text: "Their team is very responsive and supportive my website,I had a malicious attack on my system John was able to display Amazing skills to counter the attack . That is one talented programmer I've ever met",
+            name: "Michael Davis"
+          },
+          {
+            img: "{% static 'images/nellie.jpg' %}",
+            text: "High quality software delivered on time and within budget.",
+            name: "Nellie Ayuma"
+          }
+        ];
+
+        const carouselInner = document.querySelector('#reviewsCarousel .carousel-inner');
+
+        reviews.forEach(review => {
+          const carouselItem = document.createElement('div');
+          carouselItem.className = 'carousel-item';
+          carouselItem.innerHTML = `
+            <div class="slide">
+              <img src="${review.img}" alt="${review.name}">
+              <p>"${review.text}"</p>
+              <h5>${review.name}</h5>
+            </div>
+          `;
+          carouselInner.appendChild(carouselItem);
+        });
+      });
+    </script>
+  </body>
+
+{% endblock content %}
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .showcase-container {
+            width: 80%;
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .description-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .description-card {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border-radius: 15px;
+            width: 250px;
+            margin: 10px;
+            flex: 1 1 200px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .description-card:hover {
+            background-color: #555;
+        }
+
+        .description-card i {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .description-card p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .image-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .showcase-slideshow {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .showcase-slide {
+            min-width: 50%;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .showcase-slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .fa-chevron-left {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            z-index: 10;
+        }
+
+        .fa-chevron-right {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            z-index: 10;
+        }
+
+        .icon-fix {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div class="showcase-container">
+    <div class="description-container">
+        <div class="description-card" id="descriptionCard1">
+            <i class="fa fa-briefcase icon-fix start-0"></i>
+            <p>Professional Business Websites</p>
+        </div>
+        <div class="description-card" id="descriptionCard2">
+            <i class="fa fa-cogs icon-fix"></i>
+            <p>Efficient Management Systems</p>
+        </div>
+        <div class="description-card" id="descriptionCard3">
+            <i class="fa fa-calendar icon-fix"></i>
+            <p>Seamless Booking Systems</p>
+        </div>
+        <div class="description-card" id="descriptionCard4">
+            <i class="fa fa-graduation-cap icon-fix"></i>
+            <p>Innovative Education Systems</p>
+        </div>
+        <div class="description-card" id="descriptionCard5">
+            <i class="fa fa-user icon-fix"></i>
+            <p>Unique Personal Websites</p>
+        </div>
+        <div class="description-card" id="descriptionCard6">
+            <i class="fa fa-shopping-cart icon-fix"></i>
+            <p>Robust Ecommerce Websites</p>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <div class="showcase-slideshow" id="showcaseSlideshow">
+            <div class="showcase-slide" id="slide1">
+                <img src="{% static 'slide/business2.png' %}" alt="Business Website">
+            </div>
+            <div class="showcase-slide" id="slide2">
+                <img src="{% static 'slide/business.png' %}" alt="Business Website">
+            </div>
+            <div class="showcase-slide" id="slide3">
+                <img src="{% static 'slide/management1.jpeg' %}" alt="management System">
+            </div>
+            <div class="showcase-slide" id="slide4">
+                <img src="{% static 'slide/ngo.png' %}" alt="management System">
+            </div>
+            <div class="showcase-slide" id="slide5">
+                <img src="{% static 'slide/booking2.png' %}" alt="booking">
+            </div>
+            <div class="showcase-slide" id="slide6">
+                <img src="{% static 'slide/booking.png' %}" alt="booking">
+            </div>
+            <div class="showcase-slide" id="slide7">
+                <img src="{% static 'slide/education.png' %}" alt="Education System">
+            </div>
+            <div class="showcase-slide" id="slide8">
+                <img src="{% static 'slide/education.jpg' %}" alt="Education System">
+            </div>
+            <div class="showcase-slide" id="slide9">
+                <img src="{% static 'slide/personal.png' %}" alt="Personal Website">
+            </div>
+            <div class="showcase-slide" id="slide10">
+                <img src="{% static 'slide/personal.jpeg' %}" alt="Personal Website">
+            </div>
+            <div class="showcase-slide" id="slide11">
+                <img src="{% static 'slide/ecommerce1.png' %}" alt="Ecommerce Website">
+            </div>
+            <div class="showcase-slide" id="slide12">
+                <img src="{% static 'slide/ecommerce.jpg' %}" alt="Ecommerce Website">
+            </div>
+        </div>
+        <i class="fa fa-chevron-left" id="prev"></i>
+        <i class="fa fa-chevron-right" id="next"></i>
+    </div>
+</div>
+
+<script>
+    const showcaseSlideshow = document.getElementById('showcaseSlideshow');
+    const slides = document.querySelectorAll('.showcase-slide');
+    const descriptionCards = document.querySelectorAll('.description-card');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let currentIndex = 0;
+
+    function updateSlide() {
+        const slideshowWidth = showcaseSlideshow.clientWidth;
+        showcaseSlideshow.style.transform = `translateX(-${currentIndex * slideshowWidth}px)`;
+    }
+
+    next.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlide();
+    });
+
+    prev.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlide();
+    });
+
+    descriptionCards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            currentIndex = index;
+            updateSlide();
+        });
+    });
+
+    window.addEventListener('resize', updateSlide);
+    updateSlide();
+</script>
+
+</body>
+</html>
