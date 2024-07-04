@@ -287,7 +287,7 @@
 
     </style>
   </head>
-
+{%include 'portfolio/whatsapp.html' %}
   <body>
 
     <div class="jumbotron">
@@ -647,13 +647,14 @@ $(document).ready(function() {
     </div>
 
 
-
+<!--
     <footer>
       <div class="container">
         <p>&copy; 2024 JaySoft Technology. All Rights Reserved.</p>
         <p><a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms of Service</a></p>
       </div>
-    </footer>
+    </footer>-->
+    {% include 'portfolio/footer.html' %}
   <script>
   document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.products-section .scroll-container');

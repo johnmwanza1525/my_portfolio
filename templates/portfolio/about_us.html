@@ -1,0 +1,97 @@
+{%extends 'portfolio/base.html' %}
+{% load static%}
+<html lang="en">
+<head>
+{%block content%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Jaysoft Technology</title>
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 50px 0;
+        }
+        .content {
+            margin: 20px 0;
+        }
+        .team, .awards {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+        }
+        .team-member, .award {
+            display: flex;
+            align-items: center;
+            width: 45%;
+            margin: 10px;
+        }
+        .team-member img, .award img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .team-member div, .award div {
+            flex: 1;
+        }
+        .team-member h3, .award h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>About Jaysoft Technology</h1>
+            <p>Welcome to Jaysoft Technology, where innovation meets excellence. We are dedicated to delivering top-notch software solutions across various domains including management systems, university websites, dating sites, eCommerce platforms, NGO websites, and penetration testing services.</p>
+        </div>
+        <div class="content">
+            <h2 class='text-center text-primary'>Our Expertise</h2>
+            <p>At Jaysoft Technology, we pride ourselves on our comprehensive range of software solutions tailored to meet the unique needs of our clients. Our team of highly skilled developers is committed to delivering seamless and robust software that drives efficiency and success.</p>
+          </div>
+            <h2 class='text-center text-info'>Meet Our Senior Developer</h2>
+            <div class="team">
+                <div class="team-member">
+                    <img src="{% static 'ceo/ceo.jpg' %}" alt="John Mwanza">
+                    <div>
+                        <h3>John Mwanza</h3>
+                        <p>Senior Developer</p>
+                        <p class='bg-primary text-white'>John Mwanza is a highly professional software developer with extensive experience and expertise in the field. He holds certifications from CompTIA Security+, CompTIA Network+, and Canonical Cyber Security Certification. Leading a team of highly qualified programmers, John ensures seamless work delivery and exceptional service.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Awards & Recognition</h2>
+            <div class="awards">
+                <div class="award">
+                    <img src="{% static 'cert/award1.jpeg' %}" alt="Award 1">
+                    <div>
+                        <h3>Best Software Development Company may 2024</h3>
+                    </div>
+                </div>
+                <div class="award">
+                    <img src="{% static 'cert/award2.jpeg' %}" alt="Award 2">
+                    <div>
+                        <h3>Excellence in Innovation  and Cyber Threat management Feb 2024</h3>
+                    </div>
+                </div>
+                <div class="award">
+                    <img src="{% static 'cert/award3.jpeg' %}" alt="Award 3">
+                    <div>
+                        <h3>Top Tech Company Nov 2024</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{%include 'portfolio/footer.html' %}
+{%endblock content%}
+</html>

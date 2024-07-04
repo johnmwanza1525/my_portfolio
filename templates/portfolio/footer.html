@@ -2,26 +2,33 @@
 <html>
 
 <head>
-
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
   <style>
     /*---------------------------------------
-   Social section
------------------------------------------*/
+    Social section
+    -----------------------------------------*/
+    body {
+      margin: 0;
+      padding-top: 70px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
     footer {
-      padding: 10px 0;
+      padding: 5px 0;
       background-color: #0dcaf0;
       color: #ffffff;
       text-align: center;
+      position: relative;
+      width: 100%;
+      bottom: 0;
     }
 
     .fa {
-      padding: 20px;
-      font-size: 23px;
-      width: 60px;
+      padding: 10px;
+      font-size: 20px;
+      width: 40px;
       text-align: center;
       text-decoration: none;
       margin: 5px 2px;
@@ -36,7 +43,6 @@
     .fa-facebook {
       background: #3B5998;
       color: white;
-      margin-top: 60px;
     }
 
     .fa-whatsapp {
@@ -56,35 +62,30 @@
 
     p {
       text-align: center;
-
+      margin: 0;
     }
   </style>
 </head>
 
-<footer>
+<body>
 
-  <p>
-    <a href="https://web.facebook.com/johnmwanza" class="fa fa-facebook"></a>
-    <a href="https://api.whatsapp.com/send?phone=254706720450&text=Hello%20Jaysoft%20I%20wanted %20To%20Inquire%20About%20your%20Sevices" class="fa fa-whatsapp"></a>
-{% comment %}
-    <a href="https://instagram.com/damary.shallots" class="fa fa-instagram"></a>
-    <a href="https://twitter.com/sumitkumar1503" class="fa fa-twitter"></a>
-    
- {% endcomment %}   
-  </p>
 
-  <br>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <div style="color:#6f42c1;" class="wow fadeInUp footer-copyright">
-          <p> <br>
-            Copyright &copy; 2024 Jaysoft Technology</p>
-        </div>
+  <footer>
+      <div class="container">
+      <p>
+      <a href="https://web.facebook.com/johnmwanza" class="fa fa-facebook"></a>
+      <a href="https://api.whatsapp.com/send?phone=254706720450&text=Hello%20Jaysoft%20I%20wanted %20To%20Inquire%20About%20your%20Sevices" class="fa fa-whatsapp"></a>
+      {% comment %}
+      <a href="https://instagram.com/damary.shallots" class="fa fa-instagram"></a>
+      <a href="https://twitter.com/sumitkumar1503" class="fa fa-twitter"></a>
+      {% endcomment %}
+    </p>
+        <p>&copy; 2024 JaySoft Technology. All Rights Reserved.</p>
+        <p><a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms of Service</a></p>
       </div>
-    </div>
-  </div>
-</footer>
+    </footer>
+  <script>
+</body>
 <!--
 developed By : Shallot Damary and John Mwanza
 -->

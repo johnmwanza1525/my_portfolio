@@ -1,0 +1,143 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Typography */
+h1, h2 {
+    color: #0dcaf0;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-top: 40px;
+}
+
+p {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+/* Lists */
+ul {
+    margin: 10px 0 20px 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Buttons and Links */
+a {
+    color: #0dcaf0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    padding: 10px 0;
+    background-color: #0dcaf0;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* WhatsApp Icon */
+.whatsapp-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 2em;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-icon:hover {
+    background-color: #128c7e;
+}
+
+.whatsapp-icon a {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.whatsapp-icon span {
+    margin-left: 10px;
+    font-size: 0.6em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
+
+/* Specific styles for Piracy Policy and Terms of Service */
+.piracy-policy, .terms-of-service {
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.piracy-policy h1, .terms-of-service h1 {
+    font-size: 2.5em;
+    color: #0dcaf0;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.piracy-policy h2, .terms-of-service h2 {
+    font-size: 1.8em;
+    color: #0dcaf0;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.piracy-policy p, .terms-of-service p {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.piracy-policy ul, .terms-of-service ul {
+    margin: 10px 0 20px 20px;
+}
+
+.piracy-policy li, .terms-of-service li {
+    margin-bottom: 10px;
+}

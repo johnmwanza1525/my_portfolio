@@ -2,6 +2,9 @@
 
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import ContactForm
 
 def home_view(request):
     products = Product.objects.all()[:5]
@@ -25,3 +28,27 @@ def product_view(request, category_slug=None):
 def description_view(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     return render(request, 'portfolio/product_detail.html', {'product': product})
+
+def about_us(request):
+    #about_us page
+    return render(request, 'portfolio/about_us.html')
+
+
+def contact_us(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your message has been sent successfully!')
+            return redirect('main:contactus')
+    else:
+        form = ContactForm()
+    return render(request, 'portfolio/contact_us.html', {'form': form})
+
+def privacy (request):
+    #privacy page
+    return render(request,'portfolio/terms.html')
+
+def terms (request):
+    #Request page
+    return render(request,'portfolio/privacy.html')
